@@ -1,25 +1,66 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { createBrowserRouter, Outlet } from "react-router-dom";
+import SignUpPage from "./components/SignUpPage";
+import Header from "./components/Header";
+import Body from "./components/Body";
+import SignInPage from "./components/SignInPage";
+import Footer from "./components/Footer";
+import SuccessMessage from "./components/SignupSuccess";
+import AutoMobile from "./components/AutomobileCreation";
+import AutomobileBody from "./components/AutomobileBody";
+import { Provider } from "react-redux";
+import store from "./utils/store";
+import CartPage from "./components/CartPage";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Provider store={store}>
+        <div>
+          <Header />
+          <Outlet />
+          <Footer />
+        </div>
+      </Provider>
+    </>
   );
 }
 
-export default App;
+const AppRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <Body />,
+      },
+      {
+        path: "/signIn",
+        element: <SignInPage />,
+      },
+      {
+        path: "/signUp",
+        element: <SignUpPage />,
+      },
+      {
+        path: "/signUp/signUpSuccess",
+        element: <SuccessMessage />,
+      },
+      {
+        path: "/admin",
+        element: <AutoMobile />,
+      },
+      {
+        path: "/home",
+        element: <AutomobileBody />,
+      },
+      {
+        path: "/cart",
+        element: <CartPage />,
+      },
+    ],
+  },
+]);
+
+export default AppRouter;
