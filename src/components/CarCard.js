@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 
-//<img src={CarData.car_data.image_urls[1]} alt="car Img"/>
+
 const CarCard = ({name,image_urls,rating_v3,brand,accessories,pricing}) => {
   //const {name,image_urls,rating_v3,brand,accessories,pricing} = automobile
   const quantity = useSelector(store => store.cart.items)

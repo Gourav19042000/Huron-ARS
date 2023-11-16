@@ -1,7 +1,7 @@
 const CartPage = () =>{
     return(
         <>
-        <div>Cart</div>
+        <div>This is the car page where all items will be there</div>
         </>
     )
 }
