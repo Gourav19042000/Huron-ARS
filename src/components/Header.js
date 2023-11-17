@@ -3,6 +3,7 @@ import Logo from "../assets/logo.png";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+
 export const Title = () => {
   return (
     <>
@@ -34,6 +35,7 @@ export const Title = () => {
 
 const Header = () => {
   const CartItems = useSelector((store) => store.cart.items);
+  console.log(CartItems)
   return (
     <>
       <div className="m-2 sticky top-2 ">

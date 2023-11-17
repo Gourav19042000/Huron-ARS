@@ -2,7 +2,6 @@ import "./App.css";
 import { createBrowserRouter, Outlet } from "react-router-dom";
 import SignUpPage from "./components/SignUpPage";
 import Header from "./components/Header";
-import Body from "./components/Body";
 import SignInPage from "./components/SignInPage";
 import Footer from "./components/Footer";
 import SuccessMessage from "./components/SignupSuccess";
@@ -33,7 +32,7 @@ const AppRouter = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: <AutomobileBody />,
       },
       {
         path: "/signIn",

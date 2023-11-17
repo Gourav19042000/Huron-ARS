@@ -14,7 +14,7 @@ const CartPage = () => {
 
         <div className="flex flex-wrap">
           {automobiles.map((automobile) => {
-            return <CartItem {...automobile} key={automobile.car_data.car_id} />;
+            return <CartItem {...automobile} key={automobile.CarId} />;
           })}
         </div>
       </div>
