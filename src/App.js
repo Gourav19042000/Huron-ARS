@@ -10,7 +10,7 @@ import AutomobileBody from "./components/AutomobileBody";
 import { Provider } from "react-redux";
 import store from "./utils/store";
 import CartPage from "./components/CartPage";
-import PatientUpdate from "./components/EditCustomer";
+
 function App() {
   return (
     <>
@@ -58,10 +58,6 @@ const AppRouter = createBrowserRouter([
         path: "/cart",
         element: <CartPage />,
       },
-      {
-        path:"/edit/:id",
-        element:<PatientUpdate/>
-      }
     ],
   },
 ]);
