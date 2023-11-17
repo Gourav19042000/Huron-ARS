@@ -6,36 +6,34 @@ const SignInPage = () => {
   const [password1, setPassword1] = useState("");
   //const [showPassword, setShowPassword] = useState(false);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
- 
+
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
-  
+
   const handleLogin = async () => {
     try {
-     
-      const response = await axios.post('http://localhost:5043/api/Login', {
-        username:username,
-        password:password,
-        
+      const response = await axios.post("http://localhost:5043/api/Login", {
+        username: username,
+        password: password,
       });
       console.log(username);
-  console.log(password);
- 
+      console.log(password);
+
       const token = response.data.Token;
       // Store the token securely (e.g., in localStorage or secure cookie)
-      console.log('Login successful! Token:', token);
- 
-      localStorage.setItem('jwtToken',token);
- 
+      console.log("Login successful! Token:", token);
+
+      localStorage.setItem("jwtToken", token);
+
       // Redirect to the desired page or perform other actions upon successful login
     } catch (err) {
       console.error(
-        'Login failed:',
-        err.response?.data?.message || 'An error occurred.'
+        "Login failed:",
+        err.response?.data?.message || "An error occurred."
       );
     }
   };
@@ -75,9 +73,7 @@ const SignInPage = () => {
                     required
                     type="text"
                     value={username}
-                    onChange={(e)=> setUsername(e.target.value)}
-
-
+                    onChange={(e) => setUsername(e.target.value)}
                   />
                 </div>
 
@@ -85,7 +81,7 @@ const SignInPage = () => {
                   <label className="block text-gray-700">Password</label>
                   <input
                     type={showPassword ? "text" : "password"}
-                   // type="text"
+                    // type="text"
                     id="password"
                     name="password"
                     value={password}
@@ -95,7 +91,6 @@ const SignInPage = () => {
                     className="w-full px-4 py-3 rounded-lg bg-gray-200 mt-2 border focus:border-blue-500
                 focus:bg-white focus:outline-none"
                     required
-                    
                   />
                 </div>
                 <label>
@@ -114,7 +109,8 @@ const SignInPage = () => {
                     Forgot Password?
                   </a></div>}*/}
 
-                <button onClick={handleLogin}
+                <button
+                  onClick={handleLogin}
                   type="submit"
                   className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
               px-4 py-3 mt-6"

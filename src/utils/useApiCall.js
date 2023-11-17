@@ -1,22 +1,21 @@
 import axios from "axios";
-import {useState,useEffect} from "react";
+import { useState, useEffect } from "react";
 
-const useApiCall =(apiLink) => {
-    const [data,setData] = useState([])
+const useApiCall = (apiLink) => {
+  const [data, setData] = useState([]);
 
-    useEffect(()=>{
-        getApiData()
-    })
+  useEffect(() => {
+    getApiData();
+  });
 
-    async function getApiData(){
-        try {
-            const response = await axios.get(apiLink)
-            setData(response.items)
-            
-        } catch (error) {
-            console.error(error);            
-        }
+  async function getApiData() {
+    try {
+      const response = await axios.get(apiLink);
+      setData(response.items);
+    } catch (error) {
+      console.error(error);
     }
-    return data;
-}
+  }
+  return data;
+};
 export default useApiCall;

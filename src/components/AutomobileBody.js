@@ -5,13 +5,15 @@ import useApiCall from "../utils/useApiCall";
 import useOnline from "../utils/useOnline";
 
 const AutomobileBody = () => {
-  
-  const apiLink = "https://api.zoomcar.com/v7/home?city_honour=true&city=bangalore&country_code=IND&device_id=000&locale=en&platform=web";
+  const apiLink =
+    "https://api.zoomcar.com/v7/home?city_honour=true&city=bangalore&country_code=IND&device_id=000&locale=en&platform=web";
   //"http://localhost:5043/api/Cars"
-  const automobiles = useApiCall(apiLink)
+  const automobiles = useApiCall(apiLink);
   const offline = useOnline();
-  if (!offline){
-    return <h1 className="text-5xl">Your are Offline please check the Internet</h1>
+  if (!offline) {
+    return (
+      <h1 className="text-5xl">Your are Offline please check the Internet</h1>
+    );
   }
 
   return (

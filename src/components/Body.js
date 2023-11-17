@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CarCard from "./CarCard";
 import axios from "axios";
-import { addItem,removeItem,clearCart } from "../utils/CartSlice";
+import { addItem, removeItem, clearCart } from "../utils/CartSlice";
 
 const Body = () => {
   const [items, setItems] = useState([]);
@@ -11,7 +11,7 @@ const Body = () => {
       "https://api.zoomcar.com/v7/home?city_honour=true&city=bangalore&country_code=IND&device_id=000&locale=en&platform=web"
     );
     const json = await data.json();
-    console.log(json.items)
+    console.log(json.items);
     setItems(json.items);
   }
   React.useEffect(() => {
@@ -37,7 +37,7 @@ const Body = () => {
       </div>
       <div className="flex flex-wrap justify-center mt-2">
         {items.map((carItem) => {
-          return <CarCard {...carItem.car_data} />;
+          return <CarCard key={carItem.car_data.car_id} {...carItem} />;
         })}
         {
           //<CarCard {...items[1].car_data} />

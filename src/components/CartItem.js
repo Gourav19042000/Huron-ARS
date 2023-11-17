@@ -1,18 +1,15 @@
-import React from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addItem, removeItems } from "../utils/CartSlice";
-
-const CarCard = (items) => {
-  console.log(items);
+import { useDispatch } from "react-redux";
+import { removeItems } from "../utils/CartSlice";
+import { useSelector } from "react-redux";
+const CartItem = (automobile) => {
   const { name, image_urls, rating_v3, brand, accessories, pricing } =
-    items.car_data;
-  //console.log(carItem);
-
+    automobile.car_data;
+  //const automobiles = useSelector((store) => store.cart.items)
   const dispatch = useDispatch();
-  const onClickAddItem = (items) => {
-    dispatch(addItem(items));
+  const handleRemoveItem = () => {
+    dispatch(removeItems());
   };
-  //const quantity = useSelector(store => store.cart.items)
+
   return (
     <>
       <div className=" p-[20px]  rounded-xl ">
@@ -43,17 +40,16 @@ const CarCard = (items) => {
           </div>
           <div className="justify-center">
             <button
-              type="button"
-              onClick={() => onClickAddItem(items)}
-              className="text-white w-[100%] mt-7 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 me-4 mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+              className="bg-red-500 p-2 flex rounded-xl justify-center"
+              onClick={() => handleRemoveItem()}
             >
-              + Add to Book
+              Remove
             </button>
+            <button onClick={() => handleRemoveItem()}>Remove</button>
           </div>
         </div>
       </div>
     </>
   );
 };
-
-export default CarCard;
+export default CartItem;
