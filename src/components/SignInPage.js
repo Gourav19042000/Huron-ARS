@@ -8,18 +8,22 @@ const SignInPage = () => {
   const navigate = useNavigate();
   const {setIsLoggedIn, setusername} = useContext(AuthContext);
 
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+<<<<<<< HEAD
   const [errors, setErrors] = useState({
     userName: '',
     password: '',
   });
+=======
+>>>>>>> ee716e3c7b9e3df40a0e9ea5acffb3f6899f8387
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
 
+<<<<<<< HEAD
   // const HandleLogin = async () => {
   //   try {
   //     const response = await axios.post('http://localhost:5043/api/Login', {
@@ -93,6 +97,29 @@ const SignInPage = () => {
       } catch (error) {
         alert('error===' + error);
       }
+=======
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post("http://localhost:5043/api/Login", {
+        username: username,
+        password: password,
+      });
+      console.log(username);
+      console.log(password);
+
+      const token = response.data.Token;
+      // Store the token securely (e.g., in localStorage or secure cookie)
+      console.log("Login successful! Token:", token);
+
+      localStorage.setItem("jwtToken", token);
+
+      // Redirect to the desired page or perform other actions upon successful login
+    } catch (err) {
+      console.error(
+        "Login failed:",
+        err.response?.data?.message || "An error occurred."
+      );
+>>>>>>> ee716e3c7b9e3df40a0e9ea5acffb3f6899f8387
     }
   };
 
@@ -138,7 +165,12 @@ const SignInPage = () => {
                 <div className="mt-4">
                   <label className="block text-gray-700">Password</label>
                   <input
+<<<<<<< HEAD
                     type={showPassword ? 'text' : 'password'}
+=======
+                    type={showPassword ? "text" : "password"}
+                    // type="text"
+>>>>>>> ee716e3c7b9e3df40a0e9ea5acffb3f6899f8387
                     id="password"
                     name="password"
                     value={password}
@@ -167,10 +199,17 @@ const SignInPage = () => {
                   </a></div>}*/}
 
                 <button
+<<<<<<< HEAD
                   type="button"
                   onClick={submitActionHandler}
                   //type="submit"
                   className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-6"
+=======
+                  onClick={handleLogin}
+                  type="submit"
+                  className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg
+              px-4 py-3 mt-6"
+>>>>>>> ee716e3c7b9e3df40a0e9ea5acffb3f6899f8387
                 >
                   Log In
                 </button>

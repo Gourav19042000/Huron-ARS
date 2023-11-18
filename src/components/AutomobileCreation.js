@@ -24,6 +24,7 @@ const Automobile = () => {
   const onSubmitForms = async (e) => {
     e.preventDefault();
     try {
+      console.log(autoMobileData);
       const response = await axios.post(
         "http://localhost:5043/api/Cars",
         autoMobileData
@@ -47,10 +48,16 @@ const Automobile = () => {
 
   return (
     <>
-      <form onSubmit={onSubmitForms}>
+      <form onSubmit={onSubmitForms} className="m-5 p-5">
         <div className="mb-4">
-          <label htmlFor="category">Select Category:</label>
+          <label
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            htmlFor="category "
+          >
+            Select Automobile Type:
+          </label>
           <select
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             id="CategoryId"
             onChange={change}
             value={autoMobileData.CategoryId || ""}
@@ -58,17 +65,33 @@ const Automobile = () => {
             <option id="" value="" disabled>
               Select Category
             </option>
-            <option id="1" value="1">
-              Cars
+            <option
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              id="8"
+              value="8"
+            >
+              Car
             </option>
-            <option id="3" value="3">
-              Buses
+            <option
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              id="9"
+              value="9"
+            >
+              Bike
             </option>
-            <option id="4" value="4">
-              Minivans
+            <option
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              id="10"
+              value="10"
+            >
+              Minivan
             </option>
-            <option id="2" value="2">
-              Bikes
+            <option
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              id="11"
+              value="11"
+            >
+              Bus
             </option>
           </select>
           <label
@@ -117,18 +140,45 @@ const Automobile = () => {
           />
         </div>
         <div className="mb-4">
-          <label className="block font-semibold text-gray-700 mb-2" for="Fuel">
-            Fuel
+          
+        <label
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            htmlFor="category"
+          >
+            Select Fuel Type:
           </label>
-          <input
-            className="border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          <select
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             id="Fuel"
-            type="text"
             onChange={change}
-            value={autoMobileData.Fuel}
-            required
-            placeholder="Enter Automobile Fuel Type"
-          />
+            value={autoMobileData.Fuel || ""}
+          >
+            <option id="" value="" disabled>
+              Select Category
+            </option>
+            <option
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              id="Petrol"
+              value="Petrol"
+            >
+              Petrol
+            </option>
+            <option
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              id="Diesel"
+              value="Diesel"
+            >
+              Diesel
+            </option>
+            <option
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              id="Electric Vehicle"
+              value="Electric Vehicle"
+            >
+              Electric Vehicle
+            </option>
+           
+          </select>
         </div>
         <div className="mb-4">
           <label
@@ -162,21 +212,38 @@ const Automobile = () => {
           />
         </div>
         <div className="mb-4">
-          <label
-            className="block font-semibold text-gray-700 mb-2"
-            for="DrivingType"
+        <label
+            className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            htmlFor="Driving Type"
           >
-            DrivingType
+            Select Driving Type:
           </label>
-          <input
-            className="border rounded w-full py-2 px-3 text-gray-700  leading-tight focus:outline-none focus:shadow-outline"
+          <select
+            className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             id="DrivingType"
-            required
-            type="text"
             onChange={change}
-            value={autoMobileData.DrivingType}
-            placeholder="Enter your seat capacity"
-          />
+            value={autoMobileData.DrivingType || ""}
+          >
+            <option id="" value="" disabled>
+              Select Category
+            </option>
+            <option
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              id="Manual"
+              value="Manual"
+            >
+              Manual
+            </option>
+            <option
+              className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+              id="Automatic"
+              value="Automatic"
+            >
+              Automatic
+            </option>
+            
+           
+          </select>
         </div>
 
         <div className="mb-4">
@@ -196,7 +263,7 @@ const Automobile = () => {
             placeholder="Enter your automobile colour"
           />
         </div>
-        <button type="submit"> Submit</button>
+        <button  className="p-2 rounded-lg bg-sky-500" type="submit"> Submit</button>
       </form>
     </>
   );

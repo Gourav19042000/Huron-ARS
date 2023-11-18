@@ -1,17 +1,24 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addItem, removeItem } from "../utils/CartSlice";
 
-const AutomobileCard = ({
-  ImgUrl,
-  Brand,
-  Model,
-  Fuel,
-  SeatCapacity,
-  Price,
-  Drivingtype,
-  Colour,
-}) => {
-  const quantity = 0;
-  //const {name,image_urls,rating_v3,brand,accessories,pricing} = car.car_data
+const AutomobileCard = (automobile) => {
+  const {
+    ImgUrl,
+    Brand,
+    Model,
+    Fuel,
+    SeatCapacity,
+    Price,
+    Drivingtype,
+    Colour,
+  } = automobile;
+  console.log(automobile);
+  const dispatch = useDispatch();
+  const onClickAddItem = (automobile) => {
+    dispatch(addItem(automobile));
+  };
+  
   return (
     <>
       <div className=" p-[20px]  rounded-xl ">
@@ -44,40 +51,12 @@ const AutomobileCard = ({
             <hr className="h-px my-2 bg-gray-200 border-0 dark:bg-gray-700"></hr>
           </div>
           <div className="justify-center">
-            {quantity === 0 ? (
-              <button
-                type="button"
-                className="text-white w-[100%] mt-7 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 me-4 mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-              >
-                + Add to Book
-              </button>
-            ) : (
-              <div className="flex flex-wrap justify-center ">
-                <div className="flex justify-center m-1">
-                  <button
-                    type="button"
-                    className="text-white    bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                  >
-                    -
-                  </button>
-                  <div className="mt-2">
-                    <span className="font-bold ">{quantity + " "}</span>to Book
-                  </div>{" "}
-                  <button
-                    type="button"
-                    className="text-white ml-2  bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
-                  >
-                    +
-                  </button>
-                </div>
-                <button
-                  type="button"
-                  className="text-white   bg-red-600 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 focus:outline-none dark:focus:ring-red-800"
-                >
-                  Remove
-                </button>
-              </div>
-            )}
+            <button
+              type="button" onClick={()=>onClickAddItem(automobile)}
+              className="text-white w-[100%] mt-7 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-3 me-4 mb-4 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+            >
+              + Add to Book
+            </button>
           </div>
         </div>
       </div>
