@@ -51,7 +51,7 @@ const Header = () => {
                 </li>
 
                 <li className="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-blue-500 duration-200 cursor-pointer">
-                  <Link to="/">About Us</Link>
+                  <Link to="/Aboutus">About Us</Link>
                 </li>
                 <li className="p-4 border-b-2 border-blue-500 border-opacity-0 hover:border-opacity-100 hover:text-blue-500 duration-200 cursor-pointer">
                   <Link to="/">Contact</Link>
