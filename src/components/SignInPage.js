@@ -1,42 +1,98 @@
-import React, {useState} from 'react';
+import React, {useContext, useState} from 'react';
 import SignInPageImg from '../assets/SignInPageImg.jpeg';
 import axios from 'axios';
-import { useNavigate } from 'react-router';
+import {useNavigate} from 'react-router';
+import {AuthContext} from '../utils/AuthContext';
 
 const SignInPage = () => {
-  const usenavigate=useNavigate();
-  const [password1, setPassword1] = useState('');
+  const navigate = useNavigate();
+  const {setIsLoggedIn, setusername} = useContext(AuthContext);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [loggedIn, setloggedIn] = useState(false);
+  const [errors, setErrors] = useState({
+    userName: '',
+    password: '',
+  });
 
   const handleTogglePassword = () => {
     setShowPassword(!showPassword);
   };
 
-  const HandleLogin = async () => {
-    try {
-      const response = await axios.post('http://localhost:5043/api/Login', {
-        username: username,
-        password: password,
-      });
+  // const HandleLogin = async () => {
+  //   try {
+  //     const response = await axios.post('http://localhost:5043/api/Login', {
+  //       username: username,
+  //       password: password,
+  //     });
 
-      const token = response.data.Token;
-      // Store the token securely (e.g., in localStorage or secure cookie)
-      console.log('Login successful! Token:', token);
+  //     const token = response.data.Token;
+  //     // Store the token securely (e.g., in localStorage or secure cookie)
+  //     console.log('Login successful! Token:', token);
 
-      localStorage.setItem('jwtToken', token);
-      setloggedIn(true);
-      usenavigate('/Aboutus');
+  //     localStorage.setItem('jwtToken', token);
+  //     setIsLoggedIn(true);
+  //     setusername({username});
 
-      // Redirect to the desired page or perform other actions upon successful login
-    } catch (err) {
-      console.error(
-        'Login failed:',
-        err.response?.data?.message || 'An error occurred.'
-      );
+  //     usenavigate('/');
+
+  //   } catch (err) {
+  //     console.error(
+  //       'Login failed:',
+  //       err.response?.data?.message || 'An error occurred.'
+  //     );
+  //   }
+  // };
+  const validateForm = () => {
+    let valid = true;
+
+    if (!username) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        userName: 'Name is required',
+      }));
+      valid = false;
+    }
+
+    if (!password) {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        password: 'Password is required',
+      }));
+      valid = false;
+    }
+
+    return valid;
+  };
+
+  const submitActionHandler = (event) => {
+    event.preventDefault();
+    if (validateForm()) {
+      try {
+        axios
+          .post('http://localhost:5043/api/Login', {
+            username: username,
+            password: password,
+          })
+          .then((response) => {
+            const {Token, Role} = response.data;
+            localStorage.setItem('token', Token);
+            // alert('token stored');
+            // console.log(Token);
+            // console.log(Role);
+            setIsLoggedIn(true);
+            setusername({username});
+
+            if (Role === 'Admin') {
+              navigate('/Aboutus');
+            } else {
+              navigate('/');
+            }
+          });
+      } catch (error) {
+        alert('error===' + error);
+      }
     }
   };
 
@@ -110,11 +166,11 @@ const SignInPage = () => {
                     Forgot Password?
                   </a></div>}*/}
 
-                <button type="button"
-                  onClick={HandleLogin}
+                <button
+                  type="button"
+                  onClick={submitActionHandler}
                   //type="submit"
                   className="w-full block bg-indigo-500 hover:bg-indigo-400 focus:bg-indigo-400 text-white font-semibold rounded-lg px-4 py-3 mt-6"
-                  
                 >
                   Log In
                 </button>
@@ -136,4 +192,3 @@ const SignInPage = () => {
   );
 };
 export default SignInPage;
-//gourav

@@ -25,7 +25,7 @@ const Body = () => {
       console.log(error);
     }
   }
-  console.log(automobiles);
+  // console.log(automobiles);
   React.useEffect(() => {
     getAutomobile();
   }, []);
